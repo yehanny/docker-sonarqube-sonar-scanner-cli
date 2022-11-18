@@ -1,0 +1,39 @@
+version: "3.7"
+services:
+  sonarqube:
+    image: sonarqube:community
+    hostname: sonarqube
+    container_name: sonarqube
+    depends_on:
+      - db
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
+    ports:
+      - "9000:9000"
+  db:
+    image: postgres:12
+    hostname: postgresql
+    container_name: postgresql
+    volumes:
+      - postgresql:/var/lib/postgresql
+      - postgresql_data:/var/lib/postgresql/data
+
+  sonar-scanner-cli:
+    image: sonarsource/sonar-scanner-cli
+    container_name: sonar-scanner-cli
+    depends_on:
+      - sonarqube
+    volumes:
+      - ./sonar-project.properties:/usr/src/sonar-project.properties
+      - ./:/usr/src/src
+    working_dir: /usr/src
+    command: sonar-scanner -Dsonar.projectKey=${SONAR_PROJECT_KEY} -Dsonar.sources=${SONAR_SOURCES} -Dsonar.host.url=${SONAR_HOST_URL} -Dsonar.login=${SONAR_LOGIN}
+
+volumes:
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:
+  postgresql:
+  postgresql_data:
