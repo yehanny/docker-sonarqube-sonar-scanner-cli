@@ -7,7 +7,8 @@ Sonarqube is an open source platform for continuous inspection of code quality.
 1. [Introduction](#introduction)
 2. [Installation](#installation)
 3. [Support](#support)
-4. [License](#license)
+4. [Optional](#optional)
+5. [License](#license)
 
 ## Introduction
 
@@ -63,9 +64,11 @@ Go to your SonarQube server http://localhost:9000 and login with the default cre
 
 * Setup your .env Variables with the one that SonarQube just created for us
 
+```bash
 SONAR_LOGIN=
 SONAR_PROJECT_KEY=
 SONAR_SOURCES=
+```
 
 Now it's time to run our first test using this command
 
@@ -95,6 +98,7 @@ chmod 755 sonarqube-init.sh
 
 Then run it: ./sonarqube-init.sh
 
+
 ### SonarQube Properties file
 
 You can setup the properties of your project using the sonar-project.properties file
@@ -121,7 +125,7 @@ sonar.sourceEncoding=UTF-8
 
 Don't hesitate to comment if you have any issue and I'll help you for sure to solve it, I'm 24/7 in my email
 
-If you want to support this effort and time and doing this I'll be so grateful with you (And with God)
+If you want to support this effort and time on doing this I'll be so grateful with you (And with God)
 You can https://www.buymeacoffee.com/yehanny
 
 ## License
